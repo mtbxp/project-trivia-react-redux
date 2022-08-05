@@ -16,12 +16,15 @@ export default class Login extends Component {
     return !(email && name);
   }
 
-  handleClick = async () => {
+  fetchApi = async () => {
     const response = await fetch('https://opentdb.com/api_token.php?command=request');
     const data = await response.json();
     localStorage.setItem('token', data.token);
+  }
 
+  handleClick = () => {
     const { history } = this.props;
+    this.fetchApi();
     history.push('/game');
   }
 
