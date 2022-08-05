@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import saveLoginAction from '../redux/actions';
 
-export default class Login extends Component {
+class Login extends Component {
   constructor() {
     super();
 
@@ -23,7 +25,8 @@ export default class Login extends Component {
   }
 
   handleClick = () => {
-    const { history } = this.props;
+    const { history, saveLogin } = this.props;
+    saveLogin(this.state);
     this.fetchApi();
     history.push('/game');
   }
@@ -77,8 +80,14 @@ export default class Login extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  saveLogin: (state) => dispatch(saveLoginAction(state)),
+});
+
 Login.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
 }.isRequired;
+
+export default connect(null, mapDispatchToProps)(Login);
