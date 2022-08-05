@@ -19,6 +19,7 @@ export default class Game extends Component {
 
   validateToken = async () => {
     const token = localStorage.getItem('token');
+    console.log(token);
     const { history } = this.props;
     const magicNumber = 3;
     const response = await fetch(`https://opentdb.com/api.php?amount=5&token=${token}`);
@@ -45,9 +46,8 @@ export default class Game extends Component {
     return (
       <div>
         <Header />
-        {results.length === 0
-          ? 'Loading...'
-          : <Question results={ results } currentQuestion={ currentQuestion } />}
+        {results.length > 0
+          && <Question results={ results } currentQuestion={ currentQuestion } />}
         <button type="button" onClick={ this.handleClick }>NEXT</button>
       </div>
     );
