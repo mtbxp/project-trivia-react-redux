@@ -24,10 +24,10 @@ class Login extends Component {
     localStorage.setItem('token', data.token);
   }
 
-  handleClick = () => {
+  handleClick = async () => {
     const { history, saveLogin } = this.props;
     saveLogin(this.state);
-    this.fetchApi();
+    await this.fetchApi();
     history.push('/game');
   }
 

@@ -15,7 +15,10 @@ export default class Question extends Component {
       <div>
         <p data-testid="question-category">{category}</p>
         <p data-testid="question-text">{question}</p>
-        <MultipleButtons correctAns={ correctAns } incorrectAns={ incorrectAns } />
+        <MultipleButtons
+          answers={ [correctAns, ...incorrectAns] }
+          correctAns={ correctAns }
+        />
       </div>
     );
   }

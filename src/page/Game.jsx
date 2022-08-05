@@ -19,7 +19,6 @@ export default class Game extends Component {
 
   validateToken = async () => {
     const token = localStorage.getItem('token');
-    console.log(token);
     const { history } = this.props;
     const magicNumber = 3;
     const response = await fetch(`https://opentdb.com/api.php?amount=5&token=${token}`);
