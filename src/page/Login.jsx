@@ -27,8 +27,8 @@ class Login extends Component {
   handleClick = async () => {
     const { history, saveLogin } = this.props;
     saveLogin(this.state);
-    await this.fetchApi();
     history.push('/game');
+    await this.fetchApi();
   }
 
   handleChange = ({ target }) => {

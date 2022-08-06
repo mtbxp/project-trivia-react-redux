@@ -24,8 +24,8 @@ describe('tela login', () => {
     
     userEvent.click(buttonPlay);
     const { pathname } = history.location;
-    // console.log(history);
-    // expect(pathname).toBe('/game');
+    console.log(history);
+    expect(pathname).toBe('/game');
 
   });
   test('button config', () => {
