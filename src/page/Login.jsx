@@ -13,6 +13,10 @@ class Login extends Component {
     };
   }
 
+  componentDidMount() {
+    this.fetchApi();
+  }
+
   validation = () => {
     const { email, name } = this.state;
     return !(email && name);
@@ -24,10 +28,10 @@ class Login extends Component {
     localStorage.setItem('token', data.token);
   }
 
-  handleClick = async () => {
+  handleClick = () => {
+    this.fetchApi();
     const { history, saveLogin } = this.props;
     saveLogin(this.state);
-    await this.fetchApi();
     history.push('/game');
   }
 

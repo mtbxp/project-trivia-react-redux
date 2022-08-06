@@ -11,7 +11,7 @@ describe('tela login', () => {
     
     const email = screen.getByTestId('input-gravatar-email');
     const name = screen.getByTestId('input-player-name');
-    const buttonPlay = screen.getByTestId('btn-play');
+    const buttonPlay = screen.getByRole('button', { name: 'Play' });
     
     expect(email).toBeInTheDocument();
     expect(name).toBeInTheDocument();
@@ -21,18 +21,22 @@ describe('tela login', () => {
     expect(buttonPlay).toBeDisabled();
     userEvent.type(name,'jao');
     expect(buttonPlay).toBeEnabled();
-    
+
     userEvent.click(buttonPlay);
-    console.log(history);
+    const { pathname } = history.location;
+    // console.log(history);
+    expect(pathname).toBe('/game');
 
   });
   test('button config', () => {
     const { history } = renderWithRouterAndRedux(<App />);
 
     const btnConfig = screen.getByTestId('btn-settings');
-
+    expect(btnConfig).toBeInTheDocument();
     userEvent.click(btnConfig)
+    const { pathname } = history.location;
     
+    expect(pathname).toBe('/settings');
     
   })
 })
