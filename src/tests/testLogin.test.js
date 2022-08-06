@@ -23,7 +23,9 @@ describe('tela login', () => {
     expect(buttonPlay).toBeEnabled();
     
     userEvent.click(buttonPlay);
-    console.log(history);
+    const { pathname } = history.location;
+    // console.log(history);
+    // expect(pathname).toBe('/game');
 
   });
   test('button config', () => {
@@ -32,7 +34,9 @@ describe('tela login', () => {
     const btnConfig = screen.getByTestId('btn-settings');
 
     userEvent.click(btnConfig)
+    const { pathname } = history.location;
     
+    expect(pathname).toBe('/settings');
     
   })
 })
