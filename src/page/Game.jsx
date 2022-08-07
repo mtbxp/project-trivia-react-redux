@@ -11,11 +11,26 @@ export default class Game extends Component {
     this.state = {
       results: [],
       currentQuestion: 0,
+      timer: 30,
     };
   }
 
   componentDidMount() {
     this.validateToken();
+  }
+
+  componentDidUpdate() {
+    this.gameTimer();
+  }
+
+  gameTimer = () => {
+    const { timer } = this.state;
+    const second = 1000;
+    if (timer > 0) {
+      setTimeout(() => this.setState({
+        timer: timer - 1,
+      }), second);
+    }
   }
 
   validateToken = async () => {
@@ -42,12 +57,13 @@ export default class Game extends Component {
   }
 
   render() {
-    const { results, currentQuestion } = this.state;
+    const { results, currentQuestion, timer } = this.state;
     return (
       <div>
         <Header />
+        <h3>{ timer }</h3>
         {results.length > 0
-          && <Question results={ results } currentQuestion={ currentQuestion } />}
+          && <Question results={ results } currentQuestion={ currentQuestion } timer={ timer } />}
         <button type="button" onClick={ this.handleClick }>NEXT</button>
       </div>
     );
