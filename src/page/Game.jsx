@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import Question from '../components/Question';
+import './style.css';
 
 export default class Game extends Component {
   constructor() {
