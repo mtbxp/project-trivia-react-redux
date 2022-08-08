@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
-import MultipleButtons from '../components/MultipleButtons';
 import Question from '../components/Question';
 import { initTimerAction } from '../redux/actions';
 import './style.css';
@@ -14,7 +13,6 @@ class Game extends Component {
     this.state = {
       results: [],
       currentQuestion: 0,
-      timer: 30,
     };
   }
 
@@ -52,7 +50,7 @@ class Game extends Component {
   }
 
   render() {
-    const { results, currentQuestion, timer } = this.state;
+    const { results, currentQuestion } = this.state;
     const answers = results.length > 0
       && [
         results[currentQuestion].correct_answer,
@@ -62,19 +60,15 @@ class Game extends Component {
       <div>
         <Header />
         {results.length > 0 && (
-          <>
-            <Question
-              results={ results }
-              currentQuestion={ currentQuestion }
-              timer={ timer }
-              nextQuestion={ this.nextQuestion }
-            />
-            <MultipleButtons
-              answers={ answers }
-              correctAns={ results[currentQuestion].correct_answer }
-              difficulty={ results[currentQuestion].difficulty }
-            />
-          </>
+          <Question
+            results={ results }
+            currentQuestion={ currentQuestion }
+            // timer={ timer }
+            nextQuestion={ this.nextQuestion }
+            answers={ answers }
+            correctAns={ results[currentQuestion].correct_answer }
+            difficulty={ results[currentQuestion].difficulty }
+          />
         )}
       </div>
     );
