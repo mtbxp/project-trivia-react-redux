@@ -8,6 +8,7 @@ export default class Question extends Component {
     const {
       category,
       question,
+      difficulty,
       correct_answer: correctAns,
       incorrect_answers: incorrectAns,
     } = results[currentQuestion];
@@ -18,6 +19,8 @@ export default class Question extends Component {
         <MultipleButtons
           answers={ [correctAns, ...incorrectAns] }
           correctAns={ correctAns }
+          difficulty={ difficulty }
+          timer={ timer }
           disable={ timer }
         />
       </div>
