@@ -11,7 +11,6 @@ class Question extends Component {
       timer: 30,
       timerOn: false,
       showAnswers: false,
-      // correct: '',
       score: 0,
     };
     this.timer = null;
@@ -24,9 +23,6 @@ class Question extends Component {
   componentDidUpdate() {
     const { timerOn } = this.state;
     if (timerOn) {
-      // const { timer } = this.state;
-      // const { sendTimer } = this.props;
-      // sendTimer(timer);
       this.gameTimer();
     }
   }
@@ -87,10 +83,8 @@ class Question extends Component {
   }
 
   render() {
-    const { results, currentQuestion } = this.props;
-    const { answers, correctAns } = this.props;
-    const { showAnswers } = this.state;
-    const { timer } = this.state;
+    const { results, currentQuestion, answers, correctAns } = this.props;
+    const { showAnswers, timer } = this.state;
     const {
       category,
       question,
@@ -114,8 +108,6 @@ class Question extends Component {
                     this.chooseAnswer();
                     this.handleScore(e);
                     clearTimeout(this.timer);
-
-                    // sendBtnNext(true);
                   } }
                   disabled={ timer <= 0 }
                 >
@@ -133,8 +125,6 @@ class Question extends Component {
                 onClick={ () => {
                   this.chooseAnswer();
                   clearTimeout(this.timer);
-
-                  // sendBtnNext(true);
                 } }
                 disabled={ timer <= 0 }
               >
@@ -169,5 +159,3 @@ Question.propTypes = {
 }.isRequired;
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question);
-
-//----------------------------------------------------
