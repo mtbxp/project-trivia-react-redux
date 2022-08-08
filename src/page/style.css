@@ -1,9 +1,3 @@
-.header-trivia {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 .correct-answer {
   border: 3px solid rgb(6, 240, 15);
 }

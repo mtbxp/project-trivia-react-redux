@@ -31,7 +31,7 @@ export default class MultipleButtons extends Component {
   }
 
   render() {
-    const { answers, correctAns } = this.props;
+    const { answers, correctAns, disable } = this.props;
     const { showAnswers } = this.state;
     return (
       <div data-testid="answer-options">
@@ -44,6 +44,7 @@ export default class MultipleButtons extends Component {
                 type="button"
                 data-testid="correct-answer"
                 onClick={ this.chooseAnswer }
+                disabled={ disable <= 0 }
               >
                 {element}
               </button>
@@ -56,6 +57,7 @@ export default class MultipleButtons extends Component {
               key={ index }
               data-testid={ `wrong-answer-${index}` }
               onClick={ this.chooseAnswer }
+              disabled={ disable <= 0 }
             >
               {element}
             </button>);

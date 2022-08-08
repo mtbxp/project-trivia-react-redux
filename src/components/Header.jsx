@@ -14,15 +14,13 @@ class Header extends Component {
     const { name, score } = this.props;
     return (
       <header>
-        <div className="header-trivia">
-          <img data-testid="header-profile-picture" src={ `https://www.gravatar.com/avatar/${this.generateHash()}` } alt="foto perfil" />
-          <p data-testid="header-player-name">{name}</p>
-          <p data-testid="header-score">
-            Score:
-            {' '}
-            {score}
-          </p>
-        </div>
+        <img data-testid="header-profile-picture" src={ `https://www.gravatar.com/avatar/${this.generateHash()}` } alt="foto perfil" />
+        <p data-testid="header-player-name">{name}</p>
+        <p data-testid="header-score">
+          Score:
+          {' '}
+          {score}
+        </p>
       </header>
     );
   }

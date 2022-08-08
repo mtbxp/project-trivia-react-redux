@@ -11,6 +11,7 @@ export default class Game extends Component {
     this.state = {
       results: [],
       currentQuestion: 0,
+      timer: 30,
     };
   }
 
@@ -18,18 +19,37 @@ export default class Game extends Component {
     this.validateToken();
   }
 
+  componentDidUpdate() {
+    this.gameTimer();
+  }
+
+  gameTimer = () => {
+    const { timer } = this.state;
+    const second = 1000;
+    if (timer > 0) {
+      setTimeout(
+        () => this.setState({
+          timer: timer - 1,
+        }),
+        second,
+      );
+    }
+  };
+
   validateToken = async () => {
     const token = localStorage.getItem('token');
     const { history } = this.props;
     const magicNumber = 3;
-    const response = await fetch(`https://opentdb.com/api.php?amount=5&token=${token}`);
+    const response = await fetch(
+      `https://opentdb.com/api.php?amount=5&token=${token}`,
+    );
     const data = await response.json();
     if (data.response_code === magicNumber) {
       localStorage.removeItem('token');
       history.push('/');
     }
     this.setState({ results: data.results });
-  }
+  };
 
   handleClick = () => {
     const { currentQuestion } = this.state;
@@ -39,16 +59,24 @@ export default class Game extends Component {
     } else {
       this.setState({ currentQuestion: currentQuestion + 1 });
     }
-  }
+  };
 
   render() {
-    const { results, currentQuestion } = this.state;
+    const { results, currentQuestion, timer } = this.state;
     return (
       <div>
         <Header />
-        {results.length > 0
-          && <Question results={ results } currentQuestion={ currentQuestion } />}
-        <button type="button" onClick={ this.handleClick }>NEXT</button>
+        <h3>{timer}</h3>
+        {results.length > 0 && (
+          <Question
+            results={ results }
+            currentQuestion={ currentQuestion }
+            timer={ timer }
+          />
+        )}
+        <button type="button" onClick={ this.handleClick }>
+          NEXT
+        </button>
       </div>
     );
   }

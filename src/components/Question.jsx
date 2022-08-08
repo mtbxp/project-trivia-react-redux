@@ -4,7 +4,7 @@ import MultipleButtons from './MultipleButtons';
 
 export default class Question extends Component {
   render() {
-    const { results, currentQuestion } = this.props;
+    const { results, currentQuestion, timer } = this.props;
     const {
       category,
       question,
@@ -18,6 +18,7 @@ export default class Question extends Component {
         <MultipleButtons
           answers={ [correctAns, ...incorrectAns] }
           correctAns={ correctAns }
+          disable={ timer }
         />
       </div>
     );
