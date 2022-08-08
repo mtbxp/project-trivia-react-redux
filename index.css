@@ -1,5 +1,5 @@
 .header-trivia {
-    display: flex;
-    flex-direction: row;
-    background-color: red;
+  background-color: red;
+  display: flex;
+  flex-direction: row;
 }
