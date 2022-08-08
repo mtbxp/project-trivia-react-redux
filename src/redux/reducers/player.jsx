@@ -1,4 +1,4 @@
-import { SAVE_LOGIN } from '../actions/actionsType';
+import { SAVE_LOGIN, SAVE_SCORE } from '../actions/actionsType';
 
 const INITIAL_STATE = {
   name: '',
@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   gravatarEmail: '',
 };
 
-const loginReducer = (state = INITIAL_STATE, action) => {
+const player = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case SAVE_LOGIN:
     return ({
@@ -15,9 +15,14 @@ const loginReducer = (state = INITIAL_STATE, action) => {
       name: action.name,
       gravatarEmail: action.email,
     });
+  case SAVE_SCORE:
+    return ({
+      ...state,
+      score: state.score + action.score,
+    });
   default:
     return state;
   }
 };
 
-export default loginReducer;
+export default player;
