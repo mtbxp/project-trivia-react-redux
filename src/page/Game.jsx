@@ -11,6 +11,7 @@ export default class Game extends Component {
     this.state = {
       results: [],
       currentQuestion: 0,
+      nextButton: false,
     };
   }
 
@@ -28,31 +29,53 @@ export default class Game extends Component {
       localStorage.removeItem('token');
       history.push('/');
     }
-    this.setState({ results: data.results });
+    this.setState({
+      results: data.results,
+    });
   }
 
   handleClick = () => {
     const { currentQuestion } = this.state;
     const magicNumber = 4;
     if (currentQuestion >= magicNumber) {
-      this.setState({ currentQuestion: 0 });
+      this.setState({
+        currentQuestion: 0,
+        nextButton: true },
+      this.nextButtonFalse);
     } else {
-      this.setState({ currentQuestion: currentQuestion + 1 });
+      this.setState({
+        currentQuestion: currentQuestion + 1,
+        nextButton: true });
     }
   }
 
+  nextButtonFalse() {
+    this.setState({
+      nextButton: false,
+    });
+  }
+
   render() {
-    const { results, currentQuestion } = this.state;
+    const { results, currentQuestion, nextButton } = this.state;
+    console.log(nextButton);
     return (
       <div>
         <Header />
         {results.length > 0
-          && <Question results={ results } currentQuestion={ currentQuestion } />}
+          && <Question
+            results={ results }
+            currentQuestion={ currentQuestion }
+            nextButton={ nextButton }
+          />}
         <button type="button" onClick={ this.handleClick }>NEXT</button>
       </div>
     );
   }
 }
+
+// const mapDispatchToProps = (dispatch) => ({
+//   nextButtonDispatch: (state) => dispatch(nextButtonAction(state)),
+// });
 
 Game.propTypes = {
   history: PropTypes.shape({
