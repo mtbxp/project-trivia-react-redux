@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Header from '../components/Header';
+import MultipleButtons from '../components/MultipleButtons';
 import Question from '../components/Question';
+import { initTimerAction } from '../redux/actions';
 import './style.css';
 
-export default class Game extends Component {
+class Game extends Component {
   constructor() {
     super();
 
@@ -18,23 +21,6 @@ export default class Game extends Component {
   componentDidMount() {
     this.validateToken();
   }
-
-  componentDidUpdate() {
-    this.gameTimer();
-  }
-
-  gameTimer = () => {
-    const { timer } = this.state;
-    const second = 1000;
-    if (timer > 0) {
-      setTimeout(
-        () => this.setState({
-          timer: timer - 1,
-        }),
-        second,
-      );
-    }
-  };
 
   validateToken = async () => {
     const token = localStorage.getItem('token');
@@ -51,39 +37,58 @@ export default class Game extends Component {
     this.setState({ results: data.results });
   };
 
-  handleClick = () => {
+  nextQuestion = () => {
     const { currentQuestion } = this.state;
+    const { history } = this.props;
     const magicNumber = 4;
     if (currentQuestion >= magicNumber) {
       this.setState({ currentQuestion: 0 });
+      history.push('/feedback');
     } else {
-      this.setState({ currentQuestion: currentQuestion + 1 });
+      this.setState({
+        currentQuestion: currentQuestion + 1,
+      });
     }
-  };
+  }
 
   render() {
     const { results, currentQuestion, timer } = this.state;
+    const answers = results.length > 0
+      && [
+        results[currentQuestion].correct_answer,
+        ...results[currentQuestion].incorrect_answers,
+      ].sort(() => Math.random() - Number('0.5'));
     return (
       <div>
         <Header />
-        <h3>{timer}</h3>
         {results.length > 0 && (
-          <Question
-            results={ results }
-            currentQuestion={ currentQuestion }
-            timer={ timer }
-          />
+          <>
+            <Question
+              results={ results }
+              currentQuestion={ currentQuestion }
+              timer={ timer }
+              nextQuestion={ this.nextQuestion }
+            />
+            <MultipleButtons
+              answers={ answers }
+              correctAns={ results[currentQuestion].correct_answer }
+              difficulty={ results[currentQuestion].difficulty }
+            />
+          </>
         )}
-        <button type="button" onClick={ this.handleClick }>
-          NEXT
-        </button>
       </div>
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  sendTimer: (timer) => dispatch(initTimerAction(timer)),
+});
 
 Game.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
 }.isRequired;
+
+export default connect(null, mapDispatchToProps)(Game);
