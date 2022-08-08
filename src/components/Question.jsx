@@ -23,11 +23,11 @@ export default class Question extends Component {
   // }
 
   render() {
-    const { results, currentQuestion, nextButton } = this.props;
-    const { timer } = this.state;
+    const { results, currentQuestion, timer } = this.props;
     const {
       category,
       question,
+      difficulty,
       correct_answer: correctAns,
       incorrect_answers: incorrectAns,
     } = results[currentQuestion];
@@ -36,9 +36,11 @@ export default class Question extends Component {
         <p data-testid="question-category">{category}</p>
         <p data-testid="question-text">{question}</p>
         <MultipleButtons
-          nextButton={ nextButton }
           answers={ [correctAns, ...incorrectAns] }
           correctAns={ correctAns }
+          difficulty={ difficulty }
+          timer={ timer }
+          disable={ timer }
         />
         <h2>
           Timer:

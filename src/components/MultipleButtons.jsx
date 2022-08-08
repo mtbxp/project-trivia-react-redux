@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { saveScoreAction } from '../redux/actions';
 
-export default class MultipleButtons extends Component {
+class MultipleButtons extends Component {
   constructor() {
     super();
     this.state = {
       showAnswers: false,
       // correct: '',
+      score: 0,
     };
   }
 
@@ -20,6 +23,28 @@ export default class MultipleButtons extends Component {
   //   const { correctAns, incorrectAns } = this.props;
   //   this.setState({ answers: [correctAns, ...incorrectAns], correct: correctAns });
   // }
+  handleScore = ({ target }) => {
+    const { difficulty, timer, sendScore } = this.props;
+    const magicNumber = 10;
+    const { name } = target;
+    console.log(name);
+    const multiplier = () => {
+      if (difficulty === 'hard') {
+        return '3';
+      }
+      if (difficulty === 'medium') {
+        return '2';
+      }
+      return '1';
+    };
+    if (name === 'correct') {
+      const newScore = magicNumber + (timer * Number(multiplier()));
+      this.setState({ score: newScore }, () => {
+        const { score } = this.state;
+        sendScore(score);
+      });
+    }
+  }
 
   shuffleArray = (arr) => {
     for (let i = arr.length - 1; i > 0; i -= 1) {
@@ -30,7 +55,7 @@ export default class MultipleButtons extends Component {
   }
 
   render() {
-    const { answers, correctAns } = this.props;
+    const { answers, correctAns, disable } = this.props;
     const { showAnswers } = this.state;
     return (
       <div data-testid="answer-options">
@@ -41,8 +66,13 @@ export default class MultipleButtons extends Component {
                 className={ showAnswers ? 'correct-answer' : '' }
                 key={ index }
                 type="button"
+                name="correct"
                 data-testid="correct-answer"
-                onClick={ this.chooseAnswer }
+                onClick={ (e) => {
+                  this.chooseAnswer();
+                  this.handleScore(e);
+                } }
+                disabled={ disable <= 0 }
               >
                 {element}
               </button>
@@ -52,9 +82,11 @@ export default class MultipleButtons extends Component {
             <button
               className={ showAnswers ? 'wrong-answer' : '' }
               type="button"
+              name="incorrect"
               key={ index }
               data-testid={ `wrong-answer-${index}` }
-              onClick={ this.chooseAnswer }
+              onClick={ () => { this.chooseAnswer(); } }
+              disabled={ disable <= 0 }
             >
               {element}
             </button>);
@@ -64,7 +96,13 @@ export default class MultipleButtons extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  sendScore: (score) => dispatch(saveScoreAction(score)),
+});
+
 MultipleButtons.propTypes = {
   correctAns: PropTypes.string,
   answers: PropTypes.arrayOf(PropTypes.string),
 }.isRequired;
+
+export default connect(null, mapDispatchToProps)(MultipleButtons);

@@ -14,15 +14,13 @@ class Header extends Component {
     const { name, score } = this.props;
     return (
       <header>
-        <div className="header-trivia">
-          <img data-testid="header-profile-picture" src={ `https://www.gravatar.com/avatar/${this.generateHash()}` } alt="foto perfil" />
-          <p data-testid="header-player-name">{name}</p>
-          <p data-testid="header-score">
-            Score:
-            {' '}
-            {score}
-          </p>
-        </div>
+        <img data-testid="header-profile-picture" src={ `https://www.gravatar.com/avatar/${this.generateHash()}` } alt="foto perfil" />
+        <p data-testid="header-player-name">{name}</p>
+        <p data-testid="header-score">
+          Score:
+          {' '}
+          {score}
+        </p>
       </header>
     );
   }
@@ -35,9 +33,9 @@ Header.propTypes = {
 }.isRequired;
 
 const mapStateToProps = (state) => ({
-  gravatarEmail: state.loginReducer.gravatarEmail,
-  name: state.loginReducer.name,
-  score: state.loginReducer.score,
+  gravatarEmail: state.player.gravatarEmail,
+  name: state.player.name,
+  score: state.player.score,
 });
 
 export default connect(mapStateToProps)(Header);
