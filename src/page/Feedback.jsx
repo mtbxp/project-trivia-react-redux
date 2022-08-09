@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
+import './Feedback.css';
 
 class Feedback extends Component {
   componentDidMount() {
@@ -26,34 +27,40 @@ class Feedback extends Component {
   render() {
     const { assertions, score, history } = this.props;
     return (
-      <>
+      <div className="feedback-container">
         <Header />
-        <p data-testid="feedback-total-score">
-          {score}
-        </p>
-        <p data-testid="feedback-total-question">
-          {assertions}
-        </p>
-        <p data-testid="feedback-text">
-          {assertions >= Number('3')
-            ? 'Well Done!'
-            : 'Could be better...'}
-        </p>
-        <button
-          type="button"
-          data-testid="btn-play-again"
-          onClick={ () => history.push('/') }
-        >
-          Play Again
-        </button>
-        <button
-          type="button"
-          data-testid="btn-ranking"
-          onClick={ () => history.push('/ranking') }
-        >
-          Ranking
-        </button>
-      </>
+        <div className="general">
+          <div className="borda">
+            <p data-testid="feedback-total-score">
+              {score}
+            </p>
+            <p className="Acertos" data-testid="feedback-total-question">
+              {assertions}
+            </p>
+            <p data-testid="feedback-text">
+              {assertions >= Number('3')
+                ? 'Well Done!'
+                : 'Could be better...'}
+            </p>
+            <div className="buttons">
+              <button
+                type="button"
+                data-testid="btn-play-again"
+                onClick={ () => history.push('/') }
+              >
+                Play Again
+              </button>
+              <button
+                type="button"
+                data-testid="btn-ranking"
+                onClick={ () => history.push('/ranking') }
+              >
+                Ranking
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
