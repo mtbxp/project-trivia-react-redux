@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+}
+
+.login-container {
+  align-items: center;
+  background: #036b52;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.login {
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 5%;
+  box-shadow: 0 0 1em black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  justify-content: center;
+  width: 40%;
+}
+
+label {
+  padding: 3px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 2px;
+  width: 100%;
+}
+
+button {
+  background-color: gray;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  margin: 2px;
+}
+
+.play {
+  margin-left: 45px;
+  width: 80px;
+}
+
+input {
+  border: 0;
+  border-radius: 5px;
+}
