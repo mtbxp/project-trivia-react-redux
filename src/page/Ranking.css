@@ -1,0 +1,61 @@
+.player-ranking {
+  align-items: center;
+  background-color: #036b52;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+  text-align: center;
+}
+
+body {
+  background: #036b52;
+}
+
+.all-players {
+  border: 2px solid white;
+  border-radius: 10px;
+  box-shadow: 0 0 1em black;
+  color: white;
+  margin-left: 24vw;
+  padding: 8px;
+  width: 50%;
+}
+
+.ranking-title {
+  color: white;
+  font-size: 50px;
+  margin-left: 58px;
+  text-align: center;
+}
+
+.img-ranking {
+  border-radius: 10px;
+}
+
+.button-ranking {
+  height: 35px;
+  margin-top: 20px;
+  margin-left: 637px;
+  width: 70px;
+}
+
+.button-ranking:hover {
+  background-color: aliceblue;
+  color: #036b52
+}
+
+.button-ranking:active {
+  background-color: aliceblue;
+  box-shadow: 0 0 1em black;
+  color: #036b52;
+}
+
+.name-ranking {
+  font-size: 18px;
+}
+
+.score-ranking { 
+  font-size: 18px;
+}
