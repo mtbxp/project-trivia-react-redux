@@ -90,16 +90,16 @@ class Question extends Component {
       question,
     } = results[currentQuestion];
     return (
-      <div>
-        <p>{timer}</p>
-        <p data-testid="question-category">{category}</p>
-        <p data-testid="question-text">{question}</p>
-        <div data-testid="answer-options">
+      <div className="questions-container">
+        <p className="timer">{timer}</p>
+        <p data-testid="question-category" className="category">{category}</p>
+        <p data-testid="question-text" className="question">{question}</p>
+        <div data-testid="answer-options" className="answers">
           {answers.map((element, index) => {
             if (element === correctAns) {
               return (
                 <button
-                  className={ showAnswers ? 'correct-answer' : '' }
+                  className={ showAnswers ? 'correct-answer answer' : 'answer' }
                   key={ index }
                   type="button"
                   name="correct"
@@ -117,7 +117,7 @@ class Question extends Component {
             }
             return (
               <button
-                className={ showAnswers ? 'wrong-answer' : '' }
+                className={ showAnswers ? 'wrong-answer answer' : 'answer' }
                 type="button"
                 name="incorrect"
                 key={ index }
@@ -134,7 +134,12 @@ class Question extends Component {
         </div>
         {showAnswers
         && (
-          <button data-testid="btn-next" type="button" onClick={ this.handleClick }>
+          <button
+            className="button-next"
+            data-testid="btn-next"
+            type="button"
+            onClick={ this.handleClick }
+          >
             NEXT
           </button>
         )}

@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  align-items: center;
+  background-color: rgb(3, 107, 82);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.score-header {
+  font-size: 30px;
+  height: 100%;
+}
+
+.player-name {
+  font-size: 30px;
+}
+
+.questions-container {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.timer {
+  font-size: 40px;
+  padding: 30px;
+}
+
+.category {
+  font-size: 40px;
+  padding: 30px;
+}
+
+.question {
+  font-size: 40px;
+  padding: 30px;
+}
+
+.answers {
+  font-size: 40px;
+  padding: 30px;
+}
+
+.answer {
+  font-size: 25px;
+  padding: 5px;
+}
+
+.button-next {
+  font-size: 25px;
+  padding: 5px;
+}
