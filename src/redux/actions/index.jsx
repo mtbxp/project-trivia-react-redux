@@ -1,4 +1,5 @@
-import { BTN_NEXT, INIT_TIMER, SAVE_LOGIN, SAVE_SCORE } from './actionsType';
+import { BTN_NEXT, INIT_TIMER,
+  RESET_PLAYER, SAVE_LOGIN, SAVE_SCORE } from './actionsType';
 
 const saveLoginAction = (state) => ({
   type: SAVE_LOGIN,
@@ -19,6 +20,10 @@ export const initTimerAction = (timer) => ({
 export const btnNextAction = (btnNext) => ({
   type: BTN_NEXT,
   btnNext,
+});
+
+export const resetPlayerAction = () => ({
+  type: RESET_PLAYER,
 });
 
 export default saveLoginAction;

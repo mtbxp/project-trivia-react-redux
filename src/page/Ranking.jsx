@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { resetPlayerAction } from '../redux/actions';
 
 class Ranking extends Component {
   constructor() {
@@ -18,7 +19,7 @@ class Ranking extends Component {
   }
 
   render() {
-    const { history } = this.props;
+    const { history, sendReset } = this.props;
     const { standings } = this.state;
     const orderedStandings = standings.sort((a, b) => {
       if (a.score < b.score) {
@@ -29,7 +30,6 @@ class Ranking extends Component {
       }
       return 0;
     });
-    console.log(orderedStandings);
     return (
       <>
         <h1
@@ -40,11 +40,11 @@ class Ranking extends Component {
         <button
           type="button"
           data-testid="btn-go-home"
-          onClick={ () => history.push('/') }
+          onClick={ () => { sendReset(); history.push('/'); } }
         >
           Play
         </button>
-        {standings.map((element, index) => (
+        {orderedStandings.map((element, index) => (
           <div key={ index }>
             <img src={ element.picture } alt="eu" />
             <p data-testid={ `player-name-${index}` }>{element.name}</p>
@@ -67,5 +67,8 @@ const mapStateToProps = (state) => ({
   name: state.player.name,
   score: state.player.score,
 });
+const mapDispatchToProps = (dispatch) => ({
+  sendReset: () => dispatch(resetPlayerAction()),
+});
 
-export default connect(mapStateToProps)(Ranking);
+export default connect(mapStateToProps, mapDispatchToProps)(Ranking);
