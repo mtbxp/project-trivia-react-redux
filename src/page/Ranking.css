@@ -36,14 +36,14 @@ body {
 
 .button-ranking {
   height: 35px;
-  margin-top: 20px;
   margin-left: 637px;
+  margin-top: 20px;
   width: 70px;
 }
 
 .button-ranking:hover {
   background-color: aliceblue;
-  color: #036b52
+  color: #036b52;
 }
 
 .button-ranking:active {
@@ -56,6 +56,6 @@ body {
   font-size: 18px;
 }
 
-.score-ranking { 
+.score-ranking {
   font-size: 18px;
 }
