@@ -40,15 +40,8 @@ class Game extends Component {
     const { history } = this.props;
     const magicNumber = 4;
     if (currentQuestion >= magicNumber) {
-<<<<<<< HEAD
-      this.setState({
-        currentQuestion: 0,
-      },
-      this.nextButtonFalse);
-=======
       this.setState({ currentQuestion: 0 });
       history.push('/feedback');
->>>>>>> 760821175dfe8fbf8af79cc40c785a23e45ffd2f
     } else {
       this.setState({
         currentQuestion: currentQuestion + 1,
@@ -82,15 +75,9 @@ class Game extends Component {
   }
 }
 
-<<<<<<< HEAD
-// const mapDispatchToProps = (dispatch) => ({
-//   nextButtonDispatch: (state) => dispatch(nextButtonAction(state)),
-// });
-=======
 const mapDispatchToProps = (dispatch) => ({
   sendTimer: (timer) => dispatch(initTimerAction(timer)),
 });
->>>>>>> 760821175dfe8fbf8af79cc40c785a23e45ffd2f
 
 Game.propTypes = {
   history: PropTypes.shape({

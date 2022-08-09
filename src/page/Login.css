@@ -14,7 +14,7 @@ body {
 .login {
   align-items: center;
   border: 2px solid white;
-  border-radius: 5%;
+  border-radius: 10px;
   box-shadow: 0 0 1em black;
   color: white;
   display: flex;

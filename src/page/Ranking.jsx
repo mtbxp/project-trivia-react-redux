@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { resetPlayerAction } from '../redux/actions';
+import './Ranking.css';
 
 class Ranking extends Component {
   constructor() {
@@ -31,27 +32,41 @@ class Ranking extends Component {
       return 0;
     });
     return (
-      <>
+      <div className="card-ranking">
         <h1
           data-testid="ranking-title"
+          className="ranking-title"
         >
           Ranking
         </h1>
+        <div className="all-players">
+          {orderedStandings.map((element, index) => (
+            <div key={ index } className="player-ranking">
+              <img src={ element.picture } alt="eu" className="img-ranking" />
+              <p
+                className="name-ranking"
+                data-testid={ `player-name-${index}` }
+              >
+                {element.name}
+              </p>
+              <p
+                className="score-ranking"
+                data-testid={ `player-score-${index}` }
+              >
+                {element.score}
+              </p>
+            </div>
+          ))}
+        </div>
         <button
           type="button"
           data-testid="btn-go-home"
           onClick={ () => { sendReset(); history.push('/'); } }
+          className="button-ranking"
         >
           Play
         </button>
-        {orderedStandings.map((element, index) => (
-          <div key={ index }>
-            <img src={ element.picture } alt="eu" />
-            <p data-testid={ `player-name-${index}` }>{element.name}</p>
-            <p data-testid={ `player-score-${index}` }>{element.score}</p>
-          </div>
-        ))}
-      </>
+      </div>
     );
   }
 }

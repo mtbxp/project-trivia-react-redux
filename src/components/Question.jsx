@@ -82,29 +82,6 @@ class Question extends Component {
     });
   }
 
-<<<<<<< HEAD
-export default class Question extends Component {
-  constructor() {
-    super();
-    this.state = {
-      timer: 30,
-    };
-  }
-
-  componentDidUpdate() {
-    const { timer } = this.state;
-    const oneSecond = 1000;
-    if (timer > 0) {
-      setTimeout(() => this.setState({ timer: timer - 1 }), oneSecond);
-    }
-  }
-
-  // resetCounter = () => {
-  //   this.setState({ timerCount: 30 });
-  // }
-
-=======
->>>>>>> 760821175dfe8fbf8af79cc40c785a23e45ffd2f
   render() {
     const { results, currentQuestion, answers, correctAns } = this.props;
     const { showAnswers, timer } = this.state;
@@ -117,20 +94,6 @@ export default class Question extends Component {
         <p>{timer}</p>
         <p data-testid="question-category">{category}</p>
         <p data-testid="question-text">{question}</p>
-<<<<<<< HEAD
-        <MultipleButtons
-          answers={ [correctAns, ...incorrectAns] }
-          correctAns={ correctAns }
-          difficulty={ difficulty }
-          timer={ timer }
-          disable={ timer }
-        />
-        <h2>
-          Timer:
-          {' '}
-          { timer }
-        </h2>
-=======
         <div data-testid="answer-options">
           {answers.map((element, index) => {
             if (element === correctAns) {
@@ -175,7 +138,6 @@ export default class Question extends Component {
             NEXT
           </button>
         )}
->>>>>>> 760821175dfe8fbf8af79cc40c785a23e45ffd2f
       </div>
     );
   }
