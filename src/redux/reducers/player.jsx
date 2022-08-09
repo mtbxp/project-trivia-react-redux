@@ -1,4 +1,4 @@
-import { SAVE_LOGIN, SAVE_SCORE } from '../actions/actionsType';
+import { RESET_PLAYER, SAVE_LOGIN, SAVE_SCORE } from '../actions/actionsType';
 
 const INITIAL_STATE = {
   name: '',
@@ -19,6 +19,11 @@ const player = (state = INITIAL_STATE, action) => {
     return ({
       ...state,
       score: state.score + action.score,
+      assertions: state.assertions + 1,
+    });
+  case RESET_PLAYER:
+    return ({
+      ...INITIAL_STATE,
     });
   default:
     return state;

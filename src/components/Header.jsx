@@ -17,8 +17,6 @@ class Header extends Component {
         <img data-testid="header-profile-picture" src={ `https://www.gravatar.com/avatar/${this.generateHash()}` } alt="foto perfil" />
         <p data-testid="header-player-name">{name}</p>
         <p data-testid="header-score">
-          Score:
-          {' '}
           {score}
         </p>
       </header>
