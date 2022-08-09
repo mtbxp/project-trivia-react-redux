@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import saveLoginAction from '../redux/actions';
+import './Login.css';
 
 class Login extends Component {
   constructor() {
@@ -45,40 +46,45 @@ class Login extends Component {
   render() {
     const { history } = this.props;
     return (
-      <div>
-        <label htmlFor="email">
-          Email:
-          <input
-            data-testid="input-gravatar-email"
-            id="email"
-            type="text"
-            onChange={ this.handleChange }
-          />
-        </label>
-        <label htmlFor="name">
-          Name:
-          <input
-            data-testid="input-player-name"
-            id="name"
-            type="text"
-            onChange={ this.handleChange }
-          />
-        </label>
-        <button
-          data-testid="btn-play"
-          type="button"
-          disabled={ this.validation() }
-          onClick={ this.handleClick }
-        >
-          Play
-        </button>
-        <button
-          type="button"
-          data-testid="btn-settings"
-          onClick={ () => history.push('/settings') }
-        >
-          Configurações
-        </button>
+      <div className="login-container">
+        <div className="login">
+          <label htmlFor="email">
+            Email:
+            <input
+              data-testid="input-gravatar-email"
+              id="email"
+              type="text"
+              onChange={ this.handleChange }
+            />
+          </label>
+          <label htmlFor="name">
+            Name:
+            <input
+              data-testid="input-player-name"
+              id="name"
+              type="text"
+              onChange={ this.handleChange }
+            />
+          </label>
+          <div className="btn">
+            <button
+              className="play"
+              data-testid="btn-play"
+              type="button"
+              disabled={ this.validation() }
+              onClick={ this.handleClick }
+            >
+              Play
+            </button>
+            <button
+              type="button"
+              data-testid="btn-settings"
+              onClick={ () => history.push('/settings') }
+            >
+              Configurações
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
