@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
@@ -23,6 +23,7 @@ describe('tela login', () => {
     expect(buttonPlay).toBeEnabled();
 
     userEvent.click(buttonPlay);
+    await waitForElementToBeRemoved(() => screen.queryByText('Play'))
     const { pathname } = history.location;
     // console.log(history);
     expect(pathname).toBe('/game');
