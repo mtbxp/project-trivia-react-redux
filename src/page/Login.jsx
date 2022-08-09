@@ -50,6 +50,7 @@ class Login extends Component {
         <div className="login">
           <label htmlFor="email">
             Email:
+            {' '}
             <input
               data-testid="input-gravatar-email"
               id="email"
@@ -59,6 +60,7 @@ class Login extends Component {
           </label>
           <label htmlFor="name">
             Name:
+            {' '}
             <input
               data-testid="input-player-name"
               id="name"
