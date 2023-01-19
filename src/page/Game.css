@@ -58,12 +58,12 @@
   padding: 5px;
 }
 
-button:hover {
+.buttons button:hover {
   background-color: aliceblue;
   color: #036b52;
 }
 
-button:active {
+.buttons button:active {
   background-color: aliceblue;
   box-shadow: 0 0 1em black;
   color: #036b52;
