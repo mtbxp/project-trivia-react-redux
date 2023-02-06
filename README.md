@@ -35,10 +35,10 @@ Um jogo de perguntas e respostas baseado no jogo Trivia (tipo um show do milhão
 ## Executando a aplicação
 
 1. Clone o repositório
-- `git@github.com:mtbxp/project-trivia-react-redux.git`
+- `git@github.com:mtbxp/trivia-game.git`
 
 2. Entre na pasta do projeto
-- `cd project-trivia-react-redux`
+- `cd trivia-game`
 
 3. Instale as dependências e inicialize o projeto
 
