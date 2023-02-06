@@ -1,6 +1,6 @@
 Este projeto foi desenvolvido em Grupo, utilizando-se de metologias ágeis como, Scrum e Kanban, e contém os requisitos realizados por _[Marcello Barbosa](https://www.linkedin.com/in/marcello-barbosa-a1b294142/)_ enquanto estudava na [Trybe](https://www.betrybe.com/) :rocket:
 
-# Projeto Trivia ReactJs e Redux
+# Projeto Trivia ReactJs & Redux
 
 Um jogo de perguntas e respostas baseado no jogo Trivia (tipo um show do milhão americano rs) utilizando React e Redux 
 
